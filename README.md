@@ -4,6 +4,24 @@
 
 基于 [OpenClaw](https://github.com/openclaw/openclaw) 的三 Agent 配置方案，包含完整的做梦系统、记忆管理、微信绑定、定时任务。
 
+## 📦 这是什么？
+
+这是一个**配置包**，不是 OpenClaw 本体。
+
+```
+OpenClaw 智能助手 = OpenClaw 本体（npm 安装） + 这个配置包（架构 + 性格 + 定时任务）
+                                  ~300MB                        ~568KB
+```
+
+| 组件 | 来源 | 说明 |
+|------|------|------|
+| OpenClaw 本体 | `npm install -g openclaw` | 核心引擎，~300MB |
+| 本配置包 | 这个仓库，~568KB | 三 Agent 架构 + 性格模板 + 脚本 |
+
+install.sh 会**自动检测并安装 OpenClaw 本体**，你不需要手动操作。
+
+> 💡 类比：OpenClaw 本体是手机，这个配置包是手机壳 + 壁纸 + App 布局。一键把"手机"装扮成你的风格。
+
 ## ✨ 特性
 
 - 🤖 **三 Agent 架构**：主助手 😎 + 小秘书 🌸 + 体验助手 🎮
