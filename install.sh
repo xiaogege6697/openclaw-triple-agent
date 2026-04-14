@@ -36,28 +36,48 @@ check_command() {
 MISSING=0
 
 if ! check_command node; then
-    echo -e "  ${RED}✗ Node.js 未安装${NC} (需要 >= 20)"
-    echo -e "    安装: brew install node 或 https://nodejs.org"
+    echo -e "  ${RED}✗ Node.js 未安装${NC} (需要 >= 22)"
+    if [ "$(uname -s)" = "Darwin" ]; then
+        echo -e "    安装: brew install node"
+    elif [ "$(uname -s)" = "Linux" ]; then
+        echo -e "    安装: curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs"
+    else
+        echo -e "    安装: https://nodejs.org 或通过 WSL"
+    fi
     MISSING=1
 else
     NODE_VER=$(node -v | sed 's/v//' | cut -d. -f1)
-    if [ "$NODE_VER" -lt 20 ]; then
-        echo -e "  ${RED}✗ Node.js 版本过低: $(node -v) (需要 >= 20)${NC}"
+    if [ "$NODE_VER" -lt 22 ]; then
+        echo -e "  ${RED}✗ Node.js 版本过低: $(node -v) (需要 >= 22)${NC}"
         MISSING=1
     else
         echo -e "  ${GREEN}✓ Node.js $(node -v)${NC}"
     fi
 fi
 
+OPENCLAW_VERSION="2026.3.13"
+
 if ! check_command openclaw; then
     echo -e "  ${YELLOW}⚠ OpenClaw CLI 未安装${NC}"
-    echo -e "    正在安装: npm install -g openclaw"
-    npm install -g openclaw 2>/dev/null || {
-        echo -e "  ${RED}✗ 安装失败，请手动执行: npm install -g openclaw${NC}"
+    echo -e "    正在安装: npm install -g openclaw@$OPENCLAW_VERSION"
+    npm install -g "openclaw@$OPENCLAW_VERSION" 2>/dev/null || {
+        echo -e "  ${RED}✗ 安装失败，请手动执行: npm install -g openclaw@$OPENCLAW_VERSION${NC}"
         MISSING=1
     }
 else
-    echo -e "  ${GREEN}✓ OpenClaw $(openclaw --version 2>/dev/null || echo 'installed')${NC}"
+    INSTALLED_VER=$(openclaw --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || echo "unknown")
+    if [ "$INSTALLED_VER" != "$OPENCLAW_VERSION" ]; then
+        echo -e "  ${YELLOW}⚠ OpenClaw $INSTALLED_VER 已安装，但本配置包基于 $OPENCLAW_VERSION 测试${NC}"
+        echo -e "    建议执行: npm install -g openclaw@$OPENCLAW_VERSION"
+        read -p "  是否现在切换版本? [y/N]: " DOWNGRADE
+        if [ "$DOWNGRADE" = "y" ] || [ "$DOWNGRADE" = "Y" ]; then
+            npm install -g "openclaw@$OPENCLAW_VERSION" 2>/dev/null && \
+                echo -e "  ${GREEN}✓ 已切换到 $OPENCLAW_VERSION${NC}" || \
+                echo -e "  ${RED}✗ 切换失败${NC}"
+        fi
+    else
+        echo -e "  ${GREEN}✓ OpenClaw $OPENCLAW_VERSION${NC}"
+    fi
 fi
 
 if ! check_command python3; then
