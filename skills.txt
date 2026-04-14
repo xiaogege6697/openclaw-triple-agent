@@ -1,0 +1,28 @@
+# OpenClaw Skills 安装清单
+# 格式: name | 来源 | 大小 | 需要npm
+# 安装方式: 见 README.md
+
+OpenClaw-RL | https://github.com/Gen-Verse/OpenClaw-RL.git | 156.4MB | plain
+calendar | local | 0.0MB | plain
+clawsec | https://github.com/prompt-security/clawsec.git | 41.4MB | npm
+clawsec-feed | local | 0.2MB | plain
+clawsec-nanoclaw | local | 0.2MB | plain
+clawsec-scanner | local | 0.2MB | plain
+douyin-mcp-server | https://github.com/yzfly/douyin-mcp-server.git | 2.4MB | plain
+elon-musk-skill | https://github.com/alchaincyf/elon-musk-skill.git | 0.2MB | plain
+feynman-skill | https://github.com/alchaincyf/feynman-skill.git | 0.3MB | plain
+hv-analysis | local | 0.0MB | plain
+md2wechat-skill | https://github.com/geekjourneyx/md2wechat-skill.git | 67.1MB | plain
+munger-skill | https://github.com/alchaincyf/munger-skill.git | 0.2MB | plain
+naval-skill | https://github.com/alchaincyf/naval-skill.git | 0.2MB | plain
+notion-cli-agent | https://github.com/Balneario-de-Cofrentes/notion-cli-agent.git | 0.9MB | npm
+pptx | local | 1.1MB | plain
+reimburse | local | 0.0MB | plain
+ruanyifeng-weekly-skill | https://github.com/DophinL/ruanyifeng-weekly-skill.git | 0.2MB | plain
+skillhub-desktop | https://github.com/skillhub-club/skillhub-desktop.git | 3.2MB | npm
+skywork-skills | https://github.com/SkyworkAI/Skywork-Skills.git | 0.5MB | plain
+steve-jobs-skill | https://github.com/alchaincyf/steve-jobs-skill.git | 0.4MB | plain
+taleb-skill | https://github.com/alchaincyf/taleb-skill.git | 0.2MB | plain
+token-optimizer | https://github.com/alexgreensh/token-optimizer.git | 1.4MB | plain
+unbrowse | https://github.com/unbrowse-ai/unbrowse.git | 61.7MB | npm
+zhangxuefeng-skill | https://github.com/alchaincyf/zhangxuefeng-skill.git | 0.3MB | plain
