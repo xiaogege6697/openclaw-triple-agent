@@ -1,28 +1,45 @@
-# OpenClaw Skills 安装清单
-# 格式: name | 来源 | 大小 | 需要npm
-# 安装方式: 见 README.md
+# Skills 清单（2026-05-08 更新）
 
-OpenClaw-RL | https://github.com/Gen-Verse/OpenClaw-RL.git | 156.4MB | plain
-calendar | local | 0.0MB | plain
-clawsec | https://github.com/prompt-security/clawsec.git | 41.4MB | npm
-clawsec-feed | local | 0.2MB | plain
-clawsec-nanoclaw | local | 0.2MB | plain
-clawsec-scanner | local | 0.2MB | plain
-douyin-mcp-server | https://github.com/yzfly/douyin-mcp-server.git | 2.4MB | plain
-elon-musk-skill | https://github.com/alchaincyf/elon-musk-skill.git | 0.2MB | plain
-feynman-skill | https://github.com/alchaincyf/feynman-skill.git | 0.3MB | plain
-hv-analysis | local | 0.0MB | plain
-md2wechat-skill | https://github.com/geekjourneyx/md2wechat-skill.git | 67.1MB | plain
-munger-skill | https://github.com/alchaincyf/munger-skill.git | 0.2MB | plain
-naval-skill | https://github.com/alchaincyf/naval-skill.git | 0.2MB | plain
-notion-cli-agent | https://github.com/Balneario-de-Cofrentes/notion-cli-agent.git | 0.9MB | npm
-pptx | local | 1.1MB | plain
-reimburse | local | 0.0MB | plain
-ruanyifeng-weekly-skill | https://github.com/DophinL/ruanyifeng-weekly-skill.git | 0.2MB | plain
-skillhub-desktop | https://github.com/skillhub-club/skillhub-desktop.git | 3.2MB | npm
-skywork-skills | https://github.com/SkyworkAI/Skywork-Skills.git | 0.5MB | plain
-steve-jobs-skill | https://github.com/alchaincyf/steve-jobs-skill.git | 0.4MB | plain
-taleb-skill | https://github.com/alchaincyf/taleb-skill.git | 0.2MB | plain
-token-optimizer | https://github.com/alexgreensh/token-optimizer.git | 1.4MB | plain
-unbrowse | https://github.com/unbrowse-ai/unbrowse.git | 61.7MB | npm
-zhangxuefeng-skill | https://github.com/alchaincyf/zhangxuefeng-skill.git | 0.3MB | plain
+## main agent Skills（~15个）
+
+### 生活类
+- calendar — 日程管理
+- weather — 天气查询
+- social-reader — 社交媒体内容读取（小红书/微博/B站等）
+
+### 研究类
+- hv-analysis — 横纵分析法深度研究
+- zhangxuefeng-skill — 张雪峰思维框架
+
+### 开发类
+- coding-agent — 代码任务委派（Codex/Claude Code）
+- github — GitHub 操作
+- gh-issues — GitHub Issues 管理
+- skill-creator — Skill 创建和管理
+
+### 工具类
+- pptx — PPT 生成
+- reimburse — 报销辅助
+- webleon — 网页工具
+- tong-jincheng-skill — 自定义 Skill
+
+### 安全类
+- clawsec-feed — 安全资讯
+- clawsec-scanner — 安全扫描
+- clawsec-nanoclaw — NanoClaw 安全工具
+
+### 系统类
+- node-connect — 节点连接诊断
+- healthcheck — 系统健康检查
+- taskflow — 多步骤任务协调
+- tmux — 远程终端控制
+- video-frames — 视频帧提取
+- gemini — Gemini CLI
+
+## secretary agent Skills（1个）
+
+- calendar — 日程管理
+
+## 全局 Skills
+- skills-healthcheck.sh — Skills 健康检查脚本
+- SKILL-DISPATCH.md — Skill 调度中心
