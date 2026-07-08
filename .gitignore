@@ -1,0 +1,32 @@
+# Local OpenClaw runtime and generated config
+.openclaw/
+openclaw.json
+openclaw.local.json
+providers.json
+credentials/
+
+# Secrets and local environment
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.mobileprovision
+
+# Runtime memory and private conversation data
+transcripts/
+memory/transcripts/
+sessions/
+logs/
+backups/
+*.log
+
+# Dependency folders
+node_modules/
+dist/
+build/
+
+# OS/editor
+.DS_Store
+*.swp
+*.swo

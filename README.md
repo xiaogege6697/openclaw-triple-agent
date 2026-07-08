@@ -4,6 +4,8 @@
 
 基于 [OpenClaw](https://github.com/openclaw/openclaw) 的多 Agent 配置方案，包含 Dream 2.0 自动学习系统、ADD-only 记忆架构、微信绑定、12 个定时任务。
 
+这个仓库的出发点是**可恢复、可迁移、可审计的多 Agent 配置包**。生成后的 `~/.openclaw/openclaw.json`、API Key、gateway token、微信账号 ID、登录态、逐字稿和备份都属于本机私有运行时数据，不应提交到仓库。维护契约见 [docs/operation-contract.md](docs/operation-contract.md)，安全说明见 [SECURITY.md](SECURITY.md)。
+
 ## 📦 这是什么？
 
 这是一个**配置包**，不是 OpenClaw 本体。
@@ -53,6 +55,8 @@ bash install.sh
 2. 🧠 选择大模型并验证 API
 3. 📁 自动创建目录和配置
 4. 📱 [可选] 绑定微信
+
+安装前建议先备份已有 `~/.openclaw/`，并确认你理解脚本会在本机生成含密钥的运行配置。
 
 ## 📁 目录结构
 
@@ -203,9 +207,19 @@ openclaw channels login --channel openclaw-weixin
 ## ⚠️ 注意事项
 
 - **安全**：请在私密环境中运行，不要公开 API Key
+- **生成配置**：`openclaw.json`、gateway token、微信账号 ID 和登录态只应存在于本机运行目录
 - **记忆**：所有记忆文件永久保留，归档不删除
 - **备份**：gene-capsule 每日自动备份，建议同时推送到 GitHub 私有仓库
 - **Windows 用户**：需先安装 [WSL2](https://learn.microsoft.com/zh-cn/windows/wsl/install)
+
+提交前建议运行：
+
+```bash
+bash -n install.sh
+find scripts -maxdepth 2 -name '*.sh' -print0 | xargs -0 -I{} bash -n {}
+python3 -m json.tool config/openclaw.json.template >/tmp/openclaw-template.json
+rg -n "api[_-]?key|secret|token|cookie|password|bearer|sk-[A-Za-z0-9]" .
+```
 
 ## 📄 许可
 
