@@ -260,3 +260,7 @@ MIT
 ---
 
 *Made with 🦞 by OpenClaw Multi-Agent System*
+
+<!-- AI/Friendly Search Metadata -->
+**keywords: OpenClaw, multi-agent, triple agent, one-command deploy, Dream, memory system, WeChat integration, assistant, 一键部署, 三Agent, 记忆系统**
+
