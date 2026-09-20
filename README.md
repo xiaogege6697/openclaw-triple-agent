@@ -2,9 +2,15 @@
 
 **一键部署多 Agent 架构的 OpenClaw 智能助手系统**
 
+*One-command deployment of a multi-agent OpenClaw assistant system — four role-separated agents, a Dream 2.0 auto-learning pipeline, ADD-only memory, and 12 cron jobs, all wired to WeChat.*
+
 基于 [OpenClaw](https://github.com/openclaw/openclaw) 的多 Agent 配置方案，包含 Dream 2.0 自动学习系统、ADD-only 记忆架构、微信绑定、12 个定时任务。
 
 这个仓库的出发点是**可恢复、可迁移、可审计的多 Agent 配置包**。生成后的 `~/.openclaw/openclaw.json`、API Key、gateway token、微信账号 ID、登录态、逐字稿和备份都属于本机私有运行时数据，不应提交到仓库。维护契约见 [docs/operation-contract.md](docs/operation-contract.md)，安全说明见 [SECURITY.md](SECURITY.md)。
+
+## 🎯 为什么做这个
+
+单 Agent 用久了会碰到三个痛点：**人格拧巴**（一个 Agent 既当管家又当小秘书，语气和职责互相污染）、**记忆越滚越乱**（日志只增不改，新旧事实打架没人裁决）、**配置散装**（架构、性格、定时任务散落在手工编辑的 JSON 里，换机即失传）。这个仓库把多 Agent 分工、记忆生命周期和定时运维沉淀成一份可一键部署的配置包——`bash install.sh` 之后，选模型、扫码，剩下的交给系统自己跑。
 
 ## 📦 这是什么？
 
@@ -51,10 +57,19 @@ bash install.sh
 ```
 
 安装脚本会引导你：
-1. ✅ 自动检查依赖
+1. ✅ 自动检查依赖（缺 OpenClaw CLI 会自动 `npm install -g openclaw`）
 2. 🧠 选择大模型并验证 API
-3. 📁 自动创建目录和配置
+3. 📁 自动创建目录和配置，最后启动 Gateway
 4. 📱 [可选] 绑定微信
+
+### 验证安装
+
+```bash
+openclaw chat          # 和 main 😎 总管家聊一句，确认链路通
+ls ~/.openclaw/agents/ # 应看到 main / secretary / guest 等运行时目录
+```
+
+装好当晚 02:30 起，Dream 2.0 与各定时任务会按下方「⏰ 定时任务（12 个）」自动运行；第二天 20:00 就能收到第一份每日状态报告。
 
 安装前建议先备份已有 `~/.openclaw/`，并确认你理解脚本会在本机生成含密钥的运行配置。
 
@@ -181,6 +196,18 @@ openclaw channels login --channel openclaw-weixin
 - 大号微信 → main 😎（默认）
 - 小号微信 → secretary 🌸（binding 优先）
 
+## 💡 使用示例：装好后的第一天
+
+以真实运行节奏为例，你不需要做任何事，系统自己走完一个周期：
+
+- **07:00** 小秘书 🌸 在微信推送早安问候 + 当天天气 + 穿搭建议（secretary-morning）
+- **白天** 你在微信大号随口问"这周日程怎么排"——消息路由到 main 😎 总管家；小号发"提醒我明天带伞"则路由给 secretary 🌸，两套记忆互不串台
+- **20:00** main 😎 推送每日状态报告：各 Agent 健康度、cron 执行情况、异常项（dashboard-daily）
+- **02:30** Dream 2.0 开始夜间学习：回放当天逐字稿 → 提炼经验写入 facts → 候选规则进入 3 天验证期 → 自愈分级处理 → 把值得你知道的推送到微信
+- **04:00** gene-capsule 全量备份所有 workspace；每周三 03:00 另有安全巡检扫描敏感信息
+
+一个典型的 Dream 产出：你白天纠正过两次"别在报告里贴完整日志"，当晚 Phase 1 就会提炼出候选规则"报告只附摘要+指针"，验证 3 天未被违反后固化为 main 😎 的行为准则。
+
 ## 🛠 自定义
 
 详见 [docs/customization-guide.md](docs/customization-guide.md)
@@ -204,8 +231,9 @@ openclaw channels login --channel openclaw-weixin
 | 04-28 | 四级查询体系、规则检查点机制 |
 | 05-08 | Dream 播报推送修复、架构文档全面更新 |
 
-## ⚠️ 注意事项
+## ⚠️ 边界与注意事项
 
+- **与官方的关系**：本仓库是社区维护的配置包，与 OpenClaw 官方项目相互独立；OpenClaw 本体的升级、API 变更请以官方仓库为准，本配置包基于 2026.3.13 版本测试
 - **安全**：请在私密环境中运行，不要公开 API Key
 - **生成配置**：`openclaw.json`、gateway token、微信账号 ID 和登录态只应存在于本机运行目录
 - **记忆**：所有记忆文件永久保留，归档不删除
@@ -224,6 +252,10 @@ rg -n "api[_-]?key|secret|token|cookie|password|bearer|sk-[A-Za-z0-9]" .
 ## 📄 许可
 
 MIT
+
+## 🔗 相关项目
+
+更多 AI Skills 与 Agent 配置见 [github.com/xiaogege6697](https://github.com/xiaogege6697)
 
 ---
 
